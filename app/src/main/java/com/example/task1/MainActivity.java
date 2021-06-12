@@ -3,16 +3,13 @@ package com.example.task1;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.os.PersistableBundle;
 import android.os.Vibrator;
 import android.util.Log;
 import android.view.View;
@@ -162,7 +159,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
 
-                }, 2000);
+                }, 4000);
             }
 
         };
@@ -206,24 +203,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
-       /* timeround = savedInstanceState.getInt("timeremain");
-        Log.v("bundle",Integer.toString(timeround));
-
-        new CountDownTimer(timeround*1000, 1000 ) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-                timereamin = (int)(millisUntilFinished/1000);
-                progressBar.setProgress(timereamin);
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                gameOver();
-            }
-        }.start();*/
-
         level = savedInstanceState.getInt("level");
         score = savedInstanceState.getInt("score");
         ans_0.setText(savedInstanceState.getCharSequence("ans_0"));

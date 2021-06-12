@@ -68,25 +68,6 @@ public class GenQn {
         return qn;
     }
 
-    public void setQn(LocalDate qn) {
-        this.qn = qn;
-    }
-
-    public LocalDate getStart() {
-        return start;
-    }
-
-    public void setStart(LocalDate start) {
-        this.start = start;
-    }
-
-    public LocalDate getEnd() {
-        return end;
-    }
-
-    public void setEnd(LocalDate end) {
-        this.end = end;
-    }
 
     public int getAnswer() {
         return answer;
@@ -96,13 +77,6 @@ public class GenQn {
         this.answer = answer;
     }
 
-    public String[] getDayarray() {
-        return dayarray;
-    }
-
-    public void setDayarray(String[] dayarray) {
-        this.dayarray = dayarray;
-    }
 
     public Set<Integer> getSet_ans() {
         return set_ans;
