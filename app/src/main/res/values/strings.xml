@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Task1</string>
+    <string name="scoreText">Score :</string>
+    <string name="playText">PLAY</string>
+    <string name="quitText">QUIT</string>
+    <string name="highscoreText">High Score</string>
+</resources>
