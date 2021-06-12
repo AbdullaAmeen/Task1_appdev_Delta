@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MenuActivity extends AppCompatActivity {
+    TextView tv_hs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +18,7 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
 
         Button bt_play, bt_hs, bt_exit;
-        TextView tv_hs;
+
 
         bt_exit = findViewById(R.id.bt_exit);
         bt_play = findViewById(R.id.bt_play);
@@ -44,6 +45,13 @@ public class MenuActivity extends AppCompatActivity {
 
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        tv_hs.setText(""+ getDataInt());
+    }
+
     public void openMainActivity() {
         Intent intent = new Intent(this,MainActivity.class );
         startActivity(intent);

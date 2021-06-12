@@ -69,12 +69,17 @@ public class MainActivity extends AppCompatActivity {
 
         final Vibrator vibrator = (Vibrator) MainActivity.this.getSystemService(Context.VIBRATOR_SERVICE);
         //timer
-        CountDownTimer timer = new CountDownTimer(timeround*1000, 100 ) {
+        CountDownTimer timer = new CountDownTimer(timeround*1000, 1000 ) {
             @Override
             public void onTick(long millisUntilFinished) {
-                timereamin = (int)(millisUntilFinished/1000);
+                Log.v("bundle",Integer.toString(timereamin));
+               // timereamin = (int)(millisUntilFinished/1000);
                 progressBar.setProgress(timereamin);
-
+                timereamin--;
+                if(timereamin <0){
+                    gameOver();
+                    cancel();
+                }
             }
 
             @Override
@@ -89,16 +94,23 @@ public class MainActivity extends AppCompatActivity {
      if(savedInstanceState != null){
             usesecondtimer = true;
             timeround = savedInstanceState.getInt("timeremain");
+            timereamin = timeround;
             Log.v("bundle",Integer.toString(timeround));
-            new CountDownTimer(timeround*1000, 100 ) {
+            new CountDownTimer(timeround*1000, 1000 ) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    if(usesecondtimer == false){
+                    if(!usesecondtimer) {
                         cancel();
                     }
-                    timereamin = (int)(millisUntilFinished/1000);
+                    Log.v("bundle",Integer.toString(timereamin));
+                    // timereamin = (int)(millisUntilFinished/1000);
                     progressBar.setProgress(timereamin);
+                    timereamin--;
 
+                    if(timereamin <0){
+                        gameOver();
+                        cancel();
+                    }
                 }
 
                 @Override
@@ -107,6 +119,7 @@ public class MainActivity extends AppCompatActivity {
                     gameOver();
                 }
             }.start();
+
         }
         else{
             timer.start();
@@ -132,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }, 500);
                 next_qn();
+                timer.cancel();
                 timer.start();
 
 
@@ -140,26 +154,23 @@ public class MainActivity extends AppCompatActivity {
                 vibrator.vibrate(100);
                 score -= 5;
 
+                timereamin-=3;
+
                 tv_score.setText(Integer.toString(score));
 
                 lt_bg.setBackgroundColor(Color.parseColor("#C62828"));
 
-                for (Button button : Arrays.asList(ans_0, ans_1, ans_2, ans_3)) {
-                    button.setEnabled(false);
-                }
 
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         lt_bg.setBackgroundColor(Color.parseColor("#212121"));
 
-                        for (Button button : Arrays.asList(ans_0, ans_1, ans_2, ans_3)) {
-                            button.setEnabled(true);
-                        }
+
 
                     }
 
-                }, 4000);
+                }, 2000);
             }
 
         };
@@ -243,6 +254,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void next_qn() {
+        timereamin = 15;
         usesecondtimer = false;
         timeround = 15;
         Qn.NewQn(start, end);
